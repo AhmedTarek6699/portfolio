@@ -195,22 +195,103 @@
             overflow: hidden;
         }
 
-        .project-image img {
+        /* Carousel Styles */
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .carousel-track {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .carousel-slide img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+
+        .carousel-slide .placeholder-text {
+            color: var(--white);
+            font-size: 1.2rem;
+        }
+
+        .carousel-btn {
             position: absolute;
-            top: 0;
-            left: 0;
-        }
-
-        .project-image .placeholder-text {
-            position: relative;
-            z-index: 1;
-        }
-
-        .project-image img.loaded ~ .placeholder-text {
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.8);
+            color: var(--primary-color);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
             display: none;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s, transform 0.2s;
+            z-index: 10;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-btn.prev {
+            left: 10px;
+        }
+
+        .carousel-btn.next {
+            right: 10px;
+        }
+
+        .project-card:hover .carousel-btn {
+            display: flex;
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 6px;
+            z-index: 10;
+        }
+
+        .indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .indicator.active {
+            background: rgba(255, 255, 255, 1);
+            transform: scale(1.3);
+        }
+
+        .indicator:hover {
+            background: rgba(255, 255, 255, 0.8);
         }
 
         .project-content {
@@ -475,10 +556,17 @@
                 <!-- Project 1 -->
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="projects/project1/image.jpg" alt="Project 1" onerror="this.style.display='none'">
-                        <img src="projects/project1/image.png" alt="Project 1" onerror="this.style.display='none'">
-                        <span class="placeholder-text en">Project Image 1</span>
-                        <span class="placeholder-text ar hidden">صورة المشروع 1</span>
+                        <div class="carousel" data-project="1">
+                            <div class="carousel-track">
+                                <div class="carousel-slide">
+                                    <span class="placeholder-text en">Project Image 1</span>
+                                    <span class="placeholder-text ar hidden">صورة المشروع 1</span>
+                                </div>
+                            </div>
+                            <button class="carousel-btn prev" onclick="moveSlide(1, -1)">‹</button>
+                            <button class="carousel-btn next" onclick="moveSlide(1, 1)">›</button>
+                            <div class="carousel-indicators" id="indicators-1"></div>
+                        </div>
                     </div>
                     <div class="project-content">
                         <h3 class="en">Project Title 1</h3>
@@ -496,10 +584,17 @@
                 <!-- Project 2 -->
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="projects/project2/image.jpg" alt="Project 2" onerror="this.style.display='none'">
-                        <img src="projects/project2/image.png" alt="Project 2" onerror="this.style.display='none'">
-                        <span class="placeholder-text en">Project Image 2</span>
-                        <span class="placeholder-text ar hidden">صورة المشروع 2</span>
+                        <div class="carousel" data-project="2">
+                            <div class="carousel-track">
+                                <div class="carousel-slide">
+                                    <span class="placeholder-text en">Project Image 2</span>
+                                    <span class="placeholder-text ar hidden">صورة المشروع 2</span>
+                                </div>
+                            </div>
+                            <button class="carousel-btn prev" onclick="moveSlide(2, -1)">‹</button>
+                            <button class="carousel-btn next" onclick="moveSlide(2, 1)">›</button>
+                            <div class="carousel-indicators" id="indicators-2"></div>
+                        </div>
                     </div>
                     <div class="project-content">
                         <h3 class="en">Project Title 2</h3>
@@ -516,10 +611,17 @@
                 <!-- Project 3 -->
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="projects/project3/image.jpg" alt="Project 3" onerror="this.style.display='none'">
-                        <img src="projects/project3/image.png" alt="Project 3" onerror="this.style.display='none'">
-                        <span class="placeholder-text en">Project Image 3</span>
-                        <span class="placeholder-text ar hidden">صورة المشروع 3</span>
+                        <div class="carousel" data-project="3">
+                            <div class="carousel-track">
+                                <div class="carousel-slide">
+                                    <span class="placeholder-text en">Project Image 3</span>
+                                    <span class="placeholder-text ar hidden">صورة المشروع 3</span>
+                                </div>
+                            </div>
+                            <button class="carousel-btn prev" onclick="moveSlide(3, -1)">‹</button>
+                            <button class="carousel-btn next" onclick="moveSlide(3, 1)">›</button>
+                            <div class="carousel-indicators" id="indicators-3"></div>
+                        </div>
                     </div>
                     <div class="project-content">
                         <h3 class="en">Project Title 3</h3>
@@ -536,10 +638,17 @@
                 <!-- Project 4 -->
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="projects/project4/image.jpg" alt="Project 4" onerror="this.style.display='none'">
-                        <img src="projects/project4/image.png" alt="Project 4" onerror="this.style.display='none'">
-                        <span class="placeholder-text en">Project Image 4</span>
-                        <span class="placeholder-text ar hidden">صورة المشروع 4</span>
+                        <div class="carousel" data-project="4">
+                            <div class="carousel-track">
+                                <div class="carousel-slide">
+                                    <span class="placeholder-text en">Project Image 4</span>
+                                    <span class="placeholder-text ar hidden">صورة المشروع 4</span>
+                                </div>
+                            </div>
+                            <button class="carousel-btn prev" onclick="moveSlide(4, -1)">‹</button>
+                            <button class="carousel-btn next" onclick="moveSlide(4, 1)">›</button>
+                            <div class="carousel-indicators" id="indicators-4"></div>
+                        </div>
                     </div>
                     <div class="project-content">
                         <h3 class="en">Project Title 4</h3>
@@ -556,10 +665,17 @@
                 <!-- Project 5 -->
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="projects/project5/image.jpg" alt="Project 5" onerror="this.style.display='none'">
-                        <img src="projects/project5/image.png" alt="Project 5" onerror="this.style.display='none'">
-                        <span class="placeholder-text en">Project Image 5</span>
-                        <span class="placeholder-text ar hidden">صورة المشروع 5</span>
+                        <div class="carousel" data-project="5">
+                            <div class="carousel-track">
+                                <div class="carousel-slide">
+                                    <span class="placeholder-text en">Project Image 5</span>
+                                    <span class="placeholder-text ar hidden">صورة المشروع 5</span>
+                                </div>
+                            </div>
+                            <button class="carousel-btn prev" onclick="moveSlide(5, -1)">‹</button>
+                            <button class="carousel-btn next" onclick="moveSlide(5, 1)">›</button>
+                            <div class="carousel-indicators" id="indicators-5"></div>
+                        </div>
                     </div>
                     <div class="project-content">
                         <h3 class="en">Project Title 5</h3>
@@ -576,10 +692,17 @@
                 <!-- Project 6 -->
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="projects/project6/image.jpg" alt="Project 6" onerror="this.style.display='none'">
-                        <img src="projects/project6/image.png" alt="Project 6" onerror="this.style.display='none'">
-                        <span class="placeholder-text en">Project Image 6</span>
-                        <span class="placeholder-text ar hidden">صورة المشروع 6</span>
+                        <div class="carousel" data-project="6">
+                            <div class="carousel-track">
+                                <div class="carousel-slide">
+                                    <span class="placeholder-text en">Project Image 6</span>
+                                    <span class="placeholder-text ar hidden">صورة المشروع 6</span>
+                                </div>
+                            </div>
+                            <button class="carousel-btn prev" onclick="moveSlide(6, -1)">‹</button>
+                            <button class="carousel-btn next" onclick="moveSlide(6, 1)">›</button>
+                            <div class="carousel-indicators" id="indicators-6"></div>
+                        </div>
                     </div>
                     <div class="project-content">
                         <h3 class="en">Project Title 6</h3>
@@ -596,10 +719,17 @@
                 <!-- Project 7 -->
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="projects/project7/image.jpg" alt="Project 7" onerror="this.style.display='none'">
-                        <img src="projects/project7/image.png" alt="Project 7" onerror="this.style.display='none'">
-                        <span class="placeholder-text en">Project Image 7</span>
-                        <span class="placeholder-text ar hidden">صورة المشروع 7</span>
+                        <div class="carousel" data-project="7">
+                            <div class="carousel-track">
+                                <div class="carousel-slide">
+                                    <span class="placeholder-text en">Project Image 7</span>
+                                    <span class="placeholder-text ar hidden">صورة المشروع 7</span>
+                                </div>
+                            </div>
+                            <button class="carousel-btn prev" onclick="moveSlide(7, -1)">‹</button>
+                            <button class="carousel-btn next" onclick="moveSlide(7, 1)">›</button>
+                            <div class="carousel-indicators" id="indicators-7"></div>
+                        </div>
                     </div>
                     <div class="project-content">
                         <h3 class="en">Project Title 7</h3>
@@ -616,10 +746,17 @@
                 <!-- Project 8 -->
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="projects/project8/image.jpg" alt="Project 8" onerror="this.style.display='none'">
-                        <img src="projects/project8/image.png" alt="Project 8" onerror="this.style.display='none'">
-                        <span class="placeholder-text en">Project Image 8</span>
-                        <span class="placeholder-text ar hidden">صورة المشروع 8</span>
+                        <div class="carousel" data-project="8">
+                            <div class="carousel-track">
+                                <div class="carousel-slide">
+                                    <span class="placeholder-text en">Project Image 8</span>
+                                    <span class="placeholder-text ar hidden">صورة المشروع 8</span>
+                                </div>
+                            </div>
+                            <button class="carousel-btn prev" onclick="moveSlide(8, -1)">‹</button>
+                            <button class="carousel-btn next" onclick="moveSlide(8, 1)">›</button>
+                            <div class="carousel-indicators" id="indicators-8"></div>
+                        </div>
                     </div>
                     <div class="project-content">
                         <h3 class="en">Project Title 8</h3>
@@ -636,10 +773,17 @@
                 <!-- Project 9 -->
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="projects/project9/image.jpg" alt="Project 9" onerror="this.style.display='none'">
-                        <img src="projects/project9/image.png" alt="Project 9" onerror="this.style.display='none'">
-                        <span class="placeholder-text en">Project Image 9</span>
-                        <span class="placeholder-text ar hidden">صورة المشروع 9</span>
+                        <div class="carousel" data-project="9">
+                            <div class="carousel-track">
+                                <div class="carousel-slide">
+                                    <span class="placeholder-text en">Project Image 9</span>
+                                    <span class="placeholder-text ar hidden">صورة المشروع 9</span>
+                                </div>
+                            </div>
+                            <button class="carousel-btn prev" onclick="moveSlide(9, -1)">‹</button>
+                            <button class="carousel-btn next" onclick="moveSlide(9, 1)">›</button>
+                            <div class="carousel-indicators" id="indicators-9"></div>
+                        </div>
                     </div>
                     <div class="project-content">
                         <h3 class="en">Project Title 9</h3>
@@ -656,10 +800,17 @@
                 <!-- Project 10 -->
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="projects/project10/image.jpg" alt="Project 10" onerror="this.style.display='none'">
-                        <img src="projects/project10/image.png" alt="Project 10" onerror="this.style.display='none'">
-                        <span class="placeholder-text en">Project Image 10</span>
-                        <span class="placeholder-text ar hidden">صورة المشروع 10</span>
+                        <div class="carousel" data-project="10">
+                            <div class="carousel-track">
+                                <div class="carousel-slide">
+                                    <span class="placeholder-text en">Project Image 10</span>
+                                    <span class="placeholder-text ar hidden">صورة المشروع 10</span>
+                                </div>
+                            </div>
+                            <button class="carousel-btn prev" onclick="moveSlide(10, -1)">‹</button>
+                            <button class="carousel-btn next" onclick="moveSlide(10, 1)">›</button>
+                            <div class="carousel-indicators" id="indicators-10"></div>
+                        </div>
                     </div>
                     <div class="project-content">
                         <h3 class="en">Project Title 10</h3>
@@ -676,10 +827,17 @@
                 <!-- Project 11 -->
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="projects/project11/image.jpg" alt="Project 11" onerror="this.style.display='none'">
-                        <img src="projects/project11/image.png" alt="Project 11" onerror="this.style.display='none'">
-                        <span class="placeholder-text en">Project Image 11</span>
-                        <span class="placeholder-text ar hidden">صورة المشروع 11</span>
+                        <div class="carousel" data-project="11">
+                            <div class="carousel-track">
+                                <div class="carousel-slide">
+                                    <span class="placeholder-text en">Project Image 11</span>
+                                    <span class="placeholder-text ar hidden">صورة المشروع 11</span>
+                                </div>
+                            </div>
+                            <button class="carousel-btn prev" onclick="moveSlide(11, -1)">‹</button>
+                            <button class="carousel-btn next" onclick="moveSlide(11, 1)">›</button>
+                            <div class="carousel-indicators" id="indicators-11"></div>
+                        </div>
                     </div>
                     <div class="project-content">
                         <h3 class="en">Project Title 11</h3>
@@ -696,10 +854,17 @@
                 <!-- Project 12 -->
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="projects/project12/image.jpg" alt="Project 12" onerror="this.style.display='none'">
-                        <img src="projects/project12/image.png" alt="Project 12" onerror="this.style.display='none'">
-                        <span class="placeholder-text en">Project Image 12</span>
-                        <span class="placeholder-text ar hidden">صورة المشروع 12</span>
+                        <div class="carousel" data-project="12">
+                            <div class="carousel-track">
+                                <div class="carousel-slide">
+                                    <span class="placeholder-text en">Project Image 12</span>
+                                    <span class="placeholder-text ar hidden">صورة المشروع 12</span>
+                                </div>
+                            </div>
+                            <button class="carousel-btn prev" onclick="moveSlide(12, -1)">‹</button>
+                            <button class="carousel-btn next" onclick="moveSlide(12, 1)">›</button>
+                            <div class="carousel-indicators" id="indicators-12"></div>
+                        </div>
                     </div>
                     <div class="project-content">
                         <h3 class="en">Project Title 12</h3>
@@ -753,6 +918,7 @@
     </footer>
 
     <script>
+        // Language toggle
         function toggleLanguage() {
             const body = document.body;
             const enElements = document.querySelectorAll('.en');
@@ -780,14 +946,142 @@
             });
         });
 
-        // Image loading handler
-        document.addEventListener('DOMContentLoaded', function() {
-            const images = document.querySelectorAll('.project-image img');
-            images.forEach(img => {
-                img.addEventListener('load', function() {
-                    this.classList.add('loaded');
+        // Carousel functionality
+        const carouselStates = {};
+
+        function initializeCarousel(projectNum) {
+            carouselStates[projectNum] = {
+                currentIndex: 0,
+                images: []
+            };
+
+            // Try to load images for this project
+            loadProjectImages(projectNum);
+        }
+
+        function loadProjectImages(projectNum) {
+            const carousel = document.querySelector(`[data-project="${projectNum}"]`);
+            const track = carousel.querySelector('.carousel-track');
+            const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+            const imagePromises = [];
+
+            // Try to load images with different names
+            for (let i = 1; i <= 10; i++) {
+                imageExtensions.forEach(ext => {
+                    const imgPath = `projects/project${projectNum}/image${i}.${ext}`;
+                    const img = new Image();
+                    img.src = imgPath;
+
+                    imagePromises.push(
+                        new Promise((resolve) => {
+                            img.onload = () => resolve({ path: imgPath, success: true });
+                            img.onerror = () => resolve({ path: imgPath, success: false });
+                        })
+                    );
                 });
+            }
+
+            // Also try single image.jpg and image.png
+            ['jpg', 'png'].forEach(ext => {
+                const imgPath = `projects/project${projectNum}/image.${ext}`;
+                const img = new Image();
+                img.src = imgPath;
+
+                imagePromises.push(
+                    new Promise((resolve) => {
+                        img.onload = () => resolve({ path: imgPath, success: true });
+                        img.onerror = () => resolve({ path: imgPath, success: false });
+                    })
+                );
             });
+
+            Promise.all(imagePromises).then(results => {
+                const loadedImages = results.filter(r => r.success).map(r => r.path);
+
+                if (loadedImages.length > 0) {
+                    carouselStates[projectNum].images = loadedImages;
+                    updateCarouselDisplay(projectNum);
+                }
+            });
+        }
+
+        function updateCarouselDisplay(projectNum) {
+            const carousel = document.querySelector(`[data-project="${projectNum}"]`);
+            const track = carousel.querySelector('.carousel-track');
+            const images = carouselStates[projectNum].images;
+
+            if (images.length === 0) return;
+
+            // Clear existing slides
+            track.innerHTML = '';
+
+            // Add image slides
+            images.forEach((imagePath, index) => {
+                const slide = document.createElement('div');
+                slide.className = 'carousel-slide';
+                const img = document.createElement('img');
+                img.src = imagePath;
+                img.alt = `Project ${projectNum} - Image ${index + 1}`;
+                slide.appendChild(img);
+                track.appendChild(slide);
+            });
+
+            // Update indicators
+            updateIndicators(projectNum);
+
+            // Show first image
+            moveToSlide(projectNum, 0);
+        }
+
+        function updateIndicators(projectNum) {
+            const indicatorsContainer = document.getElementById(`indicators-${projectNum}`);
+            const images = carouselStates[projectNum].images;
+
+            if (images.length <= 1) {
+                indicatorsContainer.innerHTML = '';
+                return;
+            }
+
+            indicatorsContainer.innerHTML = '';
+            images.forEach((_, index) => {
+                const indicator = document.createElement('div');
+                indicator.className = 'indicator';
+                if (index === 0) indicator.classList.add('active');
+                indicator.onclick = () => moveToSlide(projectNum, index);
+                indicatorsContainer.appendChild(indicator);
+            });
+        }
+
+        function moveSlide(projectNum, direction) {
+            const state = carouselStates[projectNum];
+            const images = state.images;
+
+            if (images.length === 0) return;
+
+            state.currentIndex = (state.currentIndex + direction + images.length) % images.length;
+            moveToSlide(projectNum, state.currentIndex);
+        }
+
+        function moveToSlide(projectNum, index) {
+            const carousel = document.querySelector(`[data-project="${projectNum}"]`);
+            const track = carousel.querySelector('.carousel-track');
+            const state = carouselStates[projectNum];
+
+            state.currentIndex = index;
+            track.style.transform = `translateX(-${index * 100}%)`;
+
+            // Update indicators
+            const indicators = document.querySelectorAll(`#indicators-${projectNum} .indicator`);
+            indicators.forEach((ind, i) => {
+                ind.classList.toggle('active', i === index);
+            });
+        }
+
+        // Initialize all carousels on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            for (let i = 1; i <= 12; i++) {
+                initializeCarousel(i);
+            }
         });
     </script>
 </body>
